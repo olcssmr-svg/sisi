@@ -146,23 +146,5 @@
       document.body.appendChild(script);
 
     </script>
-<script>
-  // Unityのインスタンス変数名（通常は unityInstance です）
-  // タッチされた瞬間にブラウザの遅延を無視してUnityへ即座に伝えるコード
-  window.addEventListener('load', function () {
-    const canvas = document.querySelector("#unity-canvas"); // キャンバスのID名（環境に合わせて調整）
-    if (canvas) {
-      canvas.addEventListener('touchstart', function(e) {
-        // スマホ特有のブラウザの待機やスクロール動作を完全にブロックして最優先処理させる
-        e.preventDefault();
-        
-        // Unity側のスクリプト（オブジェクト名: "GameManager", メソッド名: "OnDonTouched"）を即座に呼ぶ
-        if (typeof unityInstance !== 'undefined' && unityInstance.SendMessage) {
-          unityInstance.SendMessage('GameManager', 'OnDonTouched');
-        }
-      }, { passive: false });
-    }
-  });
-</script>
   </body>
 </html>
